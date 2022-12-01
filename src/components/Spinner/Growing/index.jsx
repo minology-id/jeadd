@@ -1,11 +1,12 @@
 import React from 'react';
 import helper from 'utils/helper';
 
-const SpinnerGrowing = (props) => {
-  const { variant } = props;
+const SpinnerGrowing = ({ variant, className }) => {
   let styleName = 'spinner-grow';
 
   if (variant) styleName = styleName + ` text-${helper.parseVariant(variant)}`;
+
+  if (className) styleName = styleName + ` ${className}`;
 
   return (
     <div className={styleName} role="status">

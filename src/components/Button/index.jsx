@@ -1,8 +1,6 @@
 import React from 'react';
 import { utils } from 'utils';
 
-import SPinnerGrowing from 'components/Spinner/Growing';
-
 const Button = (props) => {
   const {
     children,
@@ -15,7 +13,7 @@ const Button = (props) => {
     className,
     loading,
   } = props;
-  let styleName = 'btn btn';
+  let styleName = 'btn align-items-center btn';
 
   if (outlined) styleName = styleName + '-outline';
   if (variant) styleName = styleName + `-${utils.helper.parseVariant(variant)}`;
@@ -30,9 +28,19 @@ const Button = (props) => {
       onClick={onClick}
       disabled={disabled || loading}
     >
-      {loading ? <SPinnerGrowing /> : null}
+      {loading ? <Spinner /> : null}
       {children}
     </button>
+  );
+};
+
+const Spinner = () => {
+  return (
+    <span
+      className="spinner-grow spinner-grow-sm me-2"
+      role="status"
+      aria-hidden="true"
+    ></span>
   );
 };
 
