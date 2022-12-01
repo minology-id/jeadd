@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+
+import Router from 'Routes';
+import { AuthContext } from 'context/Auth.context';
+import { refreshToken } from 'services/refreshToken';
 
 function App() {
+  const [token, setToken] = React.useState();
+  const [user, setUser] = React.useState();
+
+  React.useEffect(() => {
+    refreshToken({
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (err) => console.log(err),
+    });
+  }, [token]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{ token, user, setToken, setUser }}>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </AuthContext.Provider>
   );
 }
 

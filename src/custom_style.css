@@ -1,0 +1,39 @@
+.main-container::-webkit-scrollbar {
+  display: none;
+}
+
+.main-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  height: 100vh;
+}
+
+header {
+  min-height: 60px;
+}
+
+nav {
+  flex-direction: column;
+  min-width: 250px;
+  background-color: antiquewhite;
+}
+
+.content-continaer {
+  height: 100%;
+  background-color: aliceblue;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.content-continaer::-webkit-scrollbar {
+  display: none;
+}
+
+.content-box-container {
+  width: 100%;
+}
+
+.nav-item {
+  min-height: 60px;
+  background-color: beige;
+}

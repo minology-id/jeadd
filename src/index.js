@@ -1,13 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import reportWebVitals from './reportWebVitals';
+import App from './App';
+
+import 'bootstrap/dist/js/bootstrap.bundle';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './custom_style.css';
+
+const qc = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      cacheTime: 0,
+      staleTime: Infinity,
+      retry: true,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={qc}>
+      <App />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
