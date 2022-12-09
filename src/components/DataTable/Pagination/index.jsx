@@ -1,7 +1,7 @@
 import React from 'react';
 import helper from 'utils/helper';
 const Pagination = ({ count, paginateState }) => {
-  const [paginate, setPaginate] = paginateState;
+  const { paginate, setPaginate } = paginateState;
   const arrayOfItems = helper.createPaginateItem(count, paginate.limit);
 
   return (

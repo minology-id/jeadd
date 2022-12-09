@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TableHeader = ({ columns, sortState, selectedState, setCheckedAll }) => {
-  const [sort, setSort] = sortState;
+  const { sort, setSort } = sortState;
   let styleName = '';
 
   const onSetSort = (col) => {

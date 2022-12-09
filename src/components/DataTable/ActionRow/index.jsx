@@ -6,7 +6,7 @@ const ActionRow = ({ columns, searchState, actions }) => {
       .filter((col) => col.search !== false)
       .filter((col) => col.label.toLowerCase() !== 'action')
   );
-  const [search, setSearch] = searchState;
+  const { search, setSearch } = searchState;
 
   return (
     <div className="row">

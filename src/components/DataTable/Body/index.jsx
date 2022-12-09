@@ -11,7 +11,7 @@ const TableBody = ({
   selectedState,
   checkedAll,
 }) => {
-  const [selected, setSelected] = selectedState;
+  const { setSelected } = selectedState;
 
   const onCheckBoxClicked = (checked, row, data) => {
     if (checked) {
