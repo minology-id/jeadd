@@ -1,7 +1,9 @@
 import React from 'react';
 
+import ContentContainer from 'components/Dashboard/ContentContainer';
+
 const Profile = () => {
-  return <div>Profile</div>;
+  return <ContentContainer>Profile</ContentContainer>;
 };
 
 export default Profile;

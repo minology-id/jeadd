@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { utils } from 'utils';
 
 const Button = ({
   children,
   variant,
   size,
-  onClick,
+  to,
   disabled,
   outlined,
   type,
@@ -21,15 +22,15 @@ const Button = ({
   if (className) styleName = `${styleName} ${className}`;
 
   return (
-    <button
+    <Link
       type={utils.helper.parseButtonType(type)}
       className={styleName}
-      onClick={onClick}
+      to={to}
       disabled={disabled || loading}
     >
       {loading ? <Spinner /> : null}
       {children}
-    </button>
+    </Link>
   );
 };
 
@@ -50,6 +51,7 @@ Button.defaultProps = {
   outlined: false,
   type: 'button',
   loading: false,
+  to: '/',
 };
 
 export default Button;

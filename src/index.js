@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { BrowserRouter } from 'react-router-dom';
+import {
+  QueryClientProvider,
+  QueryClient,
+  QueryCache,
+} from '@tanstack/react-query';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 
 import 'bootstrap/dist/js/bootstrap.bundle';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './custom_style.css';
+import 'style/index.scss';
+
+const queryCache = new QueryCache({
+  onError: (error) => {
+    console.log('Something went wrong');
+  },
+});
 
 const qc = new QueryClient({
   defaultOptions: {
@@ -18,13 +28,16 @@ const qc = new QueryClient({
       retry: true,
     },
   },
+  queryCache,
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={qc}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>
 );

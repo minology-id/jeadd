@@ -1,4 +1,6 @@
 import React from 'react';
+// import { useNavigate } from 'react-router-dom';
+
 import Container from 'components/Container';
 import Card from 'components/Card';
 import Input from 'components/Input';
@@ -9,6 +11,7 @@ import { useAuth } from 'hooks/useAuth';
 import { AuthContext } from 'context/Auth.context';
 
 const Login = () => {
+  // const navigate = useNavigate();
   const { login } = useAuth();
   const { setToken } = React.useContext(AuthContext);
   const [form, setForm] = React.useState({
@@ -18,9 +21,11 @@ const Login = () => {
 
   const { isLoading, mutate: doLogin } = login({
     onSuccess: (res) => {
-      if (!res.data.payload) return console.log('Error');
+      if (!res.data.payload) return;
 
       setToken(res.data?.payload);
+      // navigate('/');
+      window.location.reload();
     },
     onError: (err) => {
       console.log(err);
@@ -38,12 +43,11 @@ const Login = () => {
   };
 
   const submit = () => {
-    console.log('submit');
     doLogin({ ...form });
   };
 
   return (
-    <Container responsive="fluid">
+    <Container responsive="fluid bg-light">
       <div
         className="row justify-content-center align-items-center m-0"
         style={{ height: '100vh' }}

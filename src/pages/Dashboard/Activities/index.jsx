@@ -1,7 +1,9 @@
 import React from 'react';
 
+import ContentContainer from 'components/Dashboard/ContentContainer';
+
 const Activities = () => {
-  return <div>Activities</div>;
+  return <ContentContainer>Activities</ContentContainer>;
 };
 
 export default Activities;

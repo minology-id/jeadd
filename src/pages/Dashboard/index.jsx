@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 
 import Container from 'components/Container';
 import Header from 'components/Dashboard/Header';
@@ -8,7 +8,13 @@ import Navbar from 'components/Dashboard/Navbar';
 import Content from 'components/Dashboard/Content';
 import Footer from 'components/Dashboard/Footer';
 
+import { AuthContext } from 'context/Auth.context';
+
 const Dashboard = () => {
+  const { token } = React.useContext(AuthContext);
+
+  if (!token) return <Navigate to="/" />;
+
   return (
     <Container responsive="fluid">
       <Header />

@@ -60,6 +60,42 @@ const helper = {
 
     return '';
   },
+  /**
+   *
+   * @param {Object} sort
+   * @param {Object} paginate
+   * @param {Object} search
+   */
+  createParams: (sort, paginate, search) => {
+    return {
+      sortBy: sort.col ? sort.col : undefined,
+      sortType: sort.type ? sort.type : undefined,
+      limit: paginate.limit ? paginate.limit : undefined,
+      page: paginate.page ? paginate.page : undefined,
+      query: search.query ? search.query : undefined,
+      field: search.field ? search.field : undefined,
+    };
+  },
+  /**
+   *
+   * @param {Number} count
+   * @param {Number} limit
+   */
+  createPaginateItem: (count, limit) => {
+    if (limit > count) {
+      return [1];
+    } else {
+      let arr = [];
+      const item =
+        count % limit === 0
+          ? Math.floor(count / limit)
+          : Math.floor(count / limit) + 1;
+      for (let i = 0; i < item; i++) {
+        arr.push(i + 1);
+      }
+      return arr;
+    }
+  },
 };
 
 export default helper;

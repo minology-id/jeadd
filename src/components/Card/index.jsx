@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Card = (props) => {
-  const { children, className } = props;
+const Card = ({ children, className }) => {
   const styleName = `card ${className}`;
 
   return <div className={styleName}>{children}</div>;

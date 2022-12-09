@@ -1,3 +1,8 @@
+// override default variable here
+
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+// additional style here
 .main-container::-webkit-scrollbar {
   display: none;
 }
@@ -15,12 +20,10 @@ header {
 nav {
   flex-direction: column;
   min-width: 250px;
-  background-color: antiquewhite;
 }
 
 .content-continaer {
   height: 100%;
-  background-color: aliceblue;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -35,5 +38,16 @@ nav {
 
 .nav-item {
   min-height: 60px;
-  background-color: beige;
+}
+
+a.nav-link.active {
+  color: blue !important;
+  background-color: lightgrey;
+}
+
+a.nav-link {
+  &:hover {
+    font-weight: 600;
+    transition: all ease-in 1.25;
+  }
 }
