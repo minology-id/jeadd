@@ -15,7 +15,7 @@ function App() {
   const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
 
-  React.useEffect(() => {
+  const verifyUser = React.useCallback(() => {
     refreshToken()
       .then((res) => {
         if (!res.data.payload) throw new Error('null token');
@@ -27,21 +27,31 @@ function App() {
         setToken(false);
       })
       .finally(() => setLoading(false));
-  }, []);
+
+    setTimeout(verifyUser, 5 * 60 * 1000);
+  }, [setToken]);
+
+  React.useEffect(() => {
+    verifyUser();
+  }, [verifyUser]);
+
+  const getToken = React.useCallback(() => {
+    getSession(token)
+      .then((res) => {
+        if (!res.data.payload) throw new Error('null token');
+
+        setUser(res.data.payload);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [token]);
 
   React.useEffect(() => {
     if (token) {
-      getSession(token)
-        .then((res) => {
-          if (!res.data.payload) throw new Error('null token');
-
-          setUser(res.data.payload);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      getToken();
     }
-  }, [token]);
+  }, [getToken, token]);
 
   if (loading) {
     return <FullSpinnerGrow />;
