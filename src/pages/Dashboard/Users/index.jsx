@@ -32,21 +32,6 @@ const User = () => {
       page: 1,
     },
   });
-  // const [data, setData] = React.useState([]);
-  // const [dataCount, setDataCount] = React.useState(0);
-  // const [sort, setSort] = React.useState({
-  //   col: null,
-  //   type: null,
-  // });
-  // const [paginate, setPaginate] = React.useState({
-  //   limit: 10,
-  //   page: 1,
-  // });
-  // const [search, setSearch] = React.useState({
-  //   query: '',
-  //   field: undefined,
-  // });
-  // const [selected, setSelected] = React.useState([]);
 
   const { token } = React.useContext(AuthContext);
 

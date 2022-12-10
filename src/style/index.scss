@@ -51,3 +51,21 @@ a.nav-link {
     transition: all ease-in 1.25;
   }
 }
+
+.mn-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mn-profile-container {
+  min-height: 30vh;
+  background-color: dimgray;
+}
+
+.mn-bar {
+  min-height: 60px;
+}

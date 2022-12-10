@@ -30,7 +30,7 @@ const Input = ({
           id={name}
           name={name}
           placeholder={placeholder}
-          {...register(name, { require })}
+          {...register(name)}
           {...otherProps}
         />
         {errors[name]?.message ? (

@@ -1,4 +1,5 @@
 import React from 'react';
+import helper from 'utils/helper';
 
 const ActionRow = ({ columns, searchState, actions }) => {
   const [cols] = React.useState(
@@ -29,7 +30,9 @@ const ActionRow = ({ columns, searchState, actions }) => {
             type="text"
             className="form-control"
             aria-label="Text input with segmented dropdown button"
-            onChange={(e) => setSearch({ ...search, query: e.target.value })}
+            onChange={helper.debounce((e) =>
+              setSearch({ ...search, query: e.target.value })
+            )}
           />
           <span className="input-group-text">Search</span>
         </div>

@@ -11,13 +11,13 @@ import Footer from 'components/Dashboard/Footer';
 import { AuthContext } from 'context/Auth.context';
 
 const Dashboard = () => {
-  const { token } = React.useContext(AuthContext);
+  const { token, user } = React.useContext(AuthContext);
 
   if (!token) return <Navigate to="/" />;
 
   return (
     <Container responsive="fluid">
-      <Header />
+      <Header user={user} />
       <Main>
         <Navbar />
         <Content>

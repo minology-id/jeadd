@@ -43,10 +43,6 @@ function App() {
     }
   }, [token]);
 
-  // useTracer('token', token);
-  // useTracer('user', user);
-  // useTracer('loading', loading);
-
   if (loading) {
     return <FullSpinnerGrow />;
   } else {

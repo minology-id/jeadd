@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react';
 import { Routes as ReactRouterRoutes, Route, Navigate } from 'react-router-dom';
 
+import { AuthContext } from 'context/Auth.context';
+
 import ErrorBoundary from 'ErrorBoundary';
 import FullSpinnerGrow from 'components/Spinner/FullSpinnerGrow';
 
@@ -9,8 +11,6 @@ import { BsSpeedometer2 } from 'react-icons/bs';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
 import { FiActivity } from 'react-icons/fi';
 import { BsFillFileEarmarkPersonFill } from 'react-icons/bs';
-
-import { AuthContext } from 'context/Auth.context';
 
 const Dashboard = React.lazy(() => import('pages/Dashboard'));
 const NotFound = React.lazy(() => import('pages/NotFound'));
@@ -74,6 +74,19 @@ export const PRIVATE_ROUTES = [
     element: React.lazy(() => import('pages/Dashboard/Profile')),
     childs: [],
     navbar: false,
+  },
+];
+
+/**
+ * Define menu item in profile menu
+ * when item is link add "path" property to the object item
+ * when item is button or function, add "onClick" to the object item
+ * IF you add link item, don't forget to add route to PRIVATE or PUBLIC routes!
+ */
+export const PROFILE_MENU = [
+  {
+    label: 'Profile',
+    path: 'profile',
   },
 ];
 

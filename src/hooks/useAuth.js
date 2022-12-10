@@ -14,5 +14,15 @@ export const useAuth = () => {
       }
     );
 
-  return { login };
+  const logout = () =>
+    useMutation((token) =>
+      jwtAxios.get(`${apiPath}/logout`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+    );
+
+  return { login, logout };
 };
