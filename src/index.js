@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import {
   QueryClientProvider,
   QueryClient,
@@ -10,6 +11,7 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 
 import 'bootstrap/dist/js/bootstrap.bundle';
+import 'react-toastify/dist/ReactToastify.min.css';
 import 'style/index.scss';
 
 const queryCache = new QueryCache({
@@ -36,6 +38,7 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={qc}>
       <BrowserRouter>
+        <ToastContainer position="top-center" />
         <App />
       </BrowserRouter>
     </QueryClientProvider>

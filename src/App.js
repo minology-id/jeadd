@@ -23,10 +23,10 @@ function App() {
         setToken(res.data.payload);
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
         setToken(false);
-      })
-      .finally(() => setLoading(false));
+      });
 
     setTimeout(verifyUser, 5 * 60 * 1000);
   }, [setToken]);
@@ -44,7 +44,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [token]);
 
   React.useEffect(() => {

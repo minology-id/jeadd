@@ -35,7 +35,7 @@ export const PRIVATE_ROUTES = [
     label: 'Overview',
     path: '',
     icon: <BsSpeedometer2 />,
-    roles: ['administrator', 'staff', 'operation'],
+    roles: ['administrator', 'staff', 'operator'],
     element: React.lazy(() => import('pages/Dashboard/Overview')),
     childs: [],
     navbar: true,
@@ -44,7 +44,7 @@ export const PRIVATE_ROUTES = [
     label: 'Users',
     path: 'users',
     icon: <BsFillPersonLinesFill />,
-    roles: ['staff'],
+    roles: ['administrator', 'staff'],
     element: React.lazy(() => import('pages/Dashboard/Users')),
     childs: [],
     navbar: true,
@@ -70,7 +70,7 @@ export const PRIVATE_ROUTES = [
     label: 'Profile',
     path: 'profile',
     icon: <BsFillFileEarmarkPersonFill />,
-    roles: ['administrator', 'staff', 'operation'],
+    roles: ['administrator', 'staff', 'operator'],
     element: React.lazy(() => import('pages/Dashboard/Profile')),
     childs: [],
     navbar: false,
@@ -91,9 +91,11 @@ export const PROFILE_MENU = [
 ];
 
 export default function Routes() {
-  const { token } = React.useContext(AuthContext);
+  const { token, user } = React.useContext(AuthContext);
 
-  const privateRoute = PRIVATE_ROUTES.map((route, index) => {
+  const privateRoute = PRIVATE_ROUTES.filter((r) =>
+    r.roles.includes(user.roleName)
+  ).map((route, index) => {
     return <Route key={index} path={route.path} element={<route.element />} />;
   });
 

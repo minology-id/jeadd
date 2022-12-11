@@ -10,6 +10,7 @@ import MobileNavbar from 'components/Dashboard/MobileNavbar';
 import Logout from 'components/Dashboard/Logout';
 
 import profile from 'assets/profile.jpeg';
+import logo from 'assets/logo.png';
 
 const Header = ({ user }) => {
   const navigate = useNavigate();
@@ -31,7 +32,10 @@ const Header = ({ user }) => {
       >
         <AiOutlineArrowLeft style={{ height: '32px', width: '32px' }} />
       </div>
-      <h1 className="navbar-brand d-none d-lg-block col-md-3 col-lg-2 me-0 fs-5">
+      <div className="navbar-brand d-none d-lg-block">
+        <img src={logo} alt="Your company logo" style={{ height: '40px' }} />
+      </div>
+      <h1 className="navbar-brand flex-grow-1 d-none d-lg-block col-md-3 col-lg-2 me-0 fs-5">
         {app.name}
       </h1>
       <h1 className="navbar-brand d-block d-lg-none col-md-3 col-lg-2 mx-auto my-auto fs-5">

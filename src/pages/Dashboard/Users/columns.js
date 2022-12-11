@@ -16,6 +16,10 @@ export const columns = [
     index: 'email',
   },
   {
+    label: 'Role ID',
+    index: 'roleId',
+  },
+  {
     label: 'Status',
     index: 'statusId',
   },
