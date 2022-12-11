@@ -11,6 +11,7 @@ const Button = ({
   type,
   className,
   loading,
+  ...otherProps
 }) => {
   let styleName = 'btn align-items-center btn';
 
@@ -26,6 +27,7 @@ const Button = ({
       className={styleName}
       onClick={onClick}
       disabled={disabled || loading}
+      {...otherProps}
     >
       {loading ? <Spinner /> : null}
       {children}

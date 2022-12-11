@@ -101,6 +101,7 @@ const CheckBox = ({ value, checked, onChange, data }) => {
 
   React.useEffect(() => {
     onChange(check, value, data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [check]);
 
   return (

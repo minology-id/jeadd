@@ -39,4 +39,18 @@ const create = ({ token, onSuccess, onError }) =>
     { onSuccess, onError }
   );
 
-export default { get, create };
+const del = ({ token, onSuccess, onError }) =>
+  useMutation(
+    ['user', 'delete'],
+    (data) =>
+      axios.delete('http://localhost:5099/v1/user', {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data,
+      }),
+    { onSuccess, onError }
+  );
+
+export default { get, create, del };

@@ -10,8 +10,8 @@ import {
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 
-import 'bootstrap/dist/js/bootstrap.bundle';
 import 'react-toastify/dist/ReactToastify.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'style/index.scss';
 
 const queryCache = new QueryCache({

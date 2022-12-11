@@ -1,6 +1,4 @@
-import { BsThreeDotsVertical } from 'react-icons/bs';
-
-export const columns = [
+export const getColumn = (action) => [
   {
     label: 'First Name',
     index: 'firstName',
@@ -31,15 +29,6 @@ export const columns = [
   {
     label: 'Action',
     index: 'userId',
-    render: (row, index) => {
-      return (
-        <button
-          className="btn btn-sm rounded-pill"
-          onClick={() => alert(index)}
-        >
-          <BsThreeDotsVertical />
-        </button>
-      );
-    },
+    render: (row, index) => action(row, index),
   },
 ];

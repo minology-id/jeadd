@@ -5,7 +5,7 @@ const Container = ({ children, staticBackdrop }) => {
     <div
       className="modal fade show d-block"
       tabIndex="-1"
-      data-bs-backdrop={staticBackdrop ? 'static' : ''}
+      data-bs-backdrop={staticBackdrop ? 'static' : false}
       //   aria-hidden="true"
     >
       <div className="modal-dialog">
