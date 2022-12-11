@@ -1,5 +1,8 @@
 import React from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import Container from 'components/Container';
 import Card from 'components/Card';
@@ -14,9 +17,13 @@ const Login = () => {
   // const navigate = useNavigate();
   const { login } = useAuth();
   const { setToken } = React.useContext(AuthContext);
-  const [form, setForm] = React.useState({
-    email: null,
-    password: null,
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
   });
 
   const { isLoading, mutate: doLogin } = login({
@@ -24,26 +31,19 @@ const Login = () => {
       if (!res.data.payload) return;
 
       setToken(res.data?.payload);
-      // navigate('/');
       window.location.reload();
     },
     onError: (err) => {
-      console.log(err);
+      let ERR_MSG =
+        err.response?.status === 401
+          ? 'Invalid email or password'
+          : err.message;
+      toast.error(ERR_MSG);
     },
   });
 
-  const onChange = (e) => {
-    e.preventDefault();
-
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
-
-  const submit = () => {
-    doLogin({ ...form });
+  const submit = (data) => {
+    doLogin({ ...data });
   };
 
   return (
@@ -66,12 +66,17 @@ const Login = () => {
             <h6 className="h6 text-center text-secondary my-3">
               Please login with your email and password
             </h6>
-            <form className="form mb-3">
+            <form
+              className="form mb-3"
+              method="POST"
+              onSubmit={handleSubmit(submit)}
+            >
               <Input
                 name="email"
                 label="Username"
                 placeholder="yourmail@example.com"
-                onChange={(e) => onChange(e)}
+                register={register}
+                errors={errors}
               />
               <Input
                 name="password"
@@ -79,12 +84,12 @@ const Login = () => {
                 type="password"
                 marginBottom={5}
                 placeholder="type your password..."
-                onChange={(e) => onChange(e)}
+                register={register}
+                errors={errors}
               />
               <Button
                 className="form-control"
-                type="button"
-                onClick={submit}
+                type="submit"
                 loading={isLoading}
               >
                 Submit
@@ -96,5 +101,10 @@ const Login = () => {
     </Container>
   );
 };
+
+const schema = yup.object({
+  email: yup.string().email().required().label('Email address'),
+  password: yup.string().required().label('Password'),
+});
 
 export default Login;
