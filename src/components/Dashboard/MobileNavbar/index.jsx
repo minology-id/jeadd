@@ -8,6 +8,9 @@ import Logout from 'components/Dashboard/Logout';
 import profile from 'assets/profile.jpeg';
 
 const MobileNavbar = ({ show, setClose, user }) => {
+  // Fix background scrolling
+  document.getElementById('root').style.overflow = show ? 'hidden' : 'auto';
+
   let containerStyle = `mn-container bg-dark text-light ${
     show ? 'd-block' : 'd-none'
   }`;

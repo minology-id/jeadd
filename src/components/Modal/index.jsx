@@ -15,7 +15,11 @@ const Modal = ({
   staticBackdrop,
   handleClose,
 }) => {
+  // Fix scrolling backgorund when modal show up
+  document.getElementById('root').style.overflow = open ? 'hidden' : 'auto';
+
   if (!open) return null;
+
   return (
     <Portal wrapperId="modal-asdf">
       <div className="modal-bg"></div>
